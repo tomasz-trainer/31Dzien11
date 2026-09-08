@@ -46,7 +46,7 @@ namespace P02WeatherForecast
             foreach (string city in cities)
             {
 
-                var t = Task.Run<double>(() => // to co jest w ciele metody GetTemperature() jest wykonywane w osobnym wątku
+                var t = await Task.Run<double>(() => // to co jest w ciele metody GetTemperature() jest wykonywane w osobnym wątku
                 {
                     lvLogger.Items.Add($"Getting temperature for {city}...");
                     double temp = wfs.GetTemperature(city);
