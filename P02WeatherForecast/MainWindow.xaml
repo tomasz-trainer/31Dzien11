@@ -49,9 +49,9 @@
                 <Button x:Name="btnGetTemperature" Style="{StaticResource MyButtonStyle}" Content="Podaj temperature (Metoda synchroniczna)" Click="btnGetTemperature_Click"></Button>
                 <Button x:Name="btnGetTemperatureAsync1" Content="Podaj temperature (Metoda asynchroniczna 1)" Click="btnGetTemperatureAsync1_Click"></Button>
                 <Button x:Name="btnGetTemperatureAsync2" Content="Podaj temperature (Metoda asynchroniczna 2)" Click="btnGetTemperatureAsync2_Click"></Button>
+                <Button x:Name="btnGetTemperatureAsync3" Content="Podaj temperature (Metoda asynchroniczna 3)" Click="btnGetTemperatureAsync3_Click"></Button>
+                <Button x:Name="btnGetTemperatureAsync4" Content="Podaj temperature (Metoda asynchroniczna 4)" Click="btnGetTemperatureAsync4_Click"></Button>
 
-                <Button Content="Podaj temperature"></Button>
-                <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
             </StackPanel>

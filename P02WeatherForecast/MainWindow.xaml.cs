@@ -58,7 +58,7 @@ namespace P02WeatherForecast
             }
         }
 
-        // scenariusz 1: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
+        // scenariusz 2: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
         private async void btnGetTemperatureAsync2_Click(object sender, RoutedEventArgs e)
         {
             tbTemperature.Text = string.Empty;
@@ -79,9 +79,7 @@ namespace P02WeatherForecast
                     double temp = wfs.GetTemperature(city);
                     return temp;
                 });
-                tasks.Add(t);
-
-               
+                tasks.Add(t);    
             }
 
 
@@ -94,6 +92,74 @@ namespace P02WeatherForecast
                 double temp = task.Result;
                 tbTemperature.Text += $"Temperature: {temp} °C\n";
             };
+        }
+
+        // scenariusz 2: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
+        // dodatkowo : w tasku zwracany kilka wartości (temp, city) w postaci krotki (tuple)
+        private async void btnGetTemperatureAsync3_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+
+            WeatherForecastService wfs = new WeatherForecastService();
+            string[] cities = { "Warsaw", "London", "New York", "Tokyo", "Sydney" };
+            //string[] cities =  txtCity.Text.Split(Environment.NewLine);
+
+            List<Task> tasks = new List<Task>();
+            foreach (string city in cities)
+            {
+
+
+                var t = Task.Run(() => // to co jest w ciele metody GetTemperature() jest wykonywane w osobnym wątku
+                {
+
+                    double temp = wfs.GetTemperature(city);
+                    return (temp,city);
+                });
+                tasks.Add(t);
+            }
+
+
+            lvLogger.Items.Add($"Started processng all cities");
+            await Task.WhenAll(tasks);
+            lvLogger.Items.Add($"Finished processng all cities");
+
+            foreach (Task<(int Temperature, string City)> task in tasks)
+            {
+                double temp = task.Result.Temperature;
+                string city = task.Result.City;
+                tbTemperature.Text += $"Temperature in {city} is currently :  {temp} °C\n";
+            }
+            ;
+        }
+
+        // Scenariusz 4: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
+        // wyniki są zwracane do wątku UI
+        private async void btnGetTemperatureAsync4_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+
+            WeatherForecastService wfs = new WeatherForecastService();
+            string[] cities = { "Warsaw", "London", "New York", "Tokyo", "Sydney" };
+            //string[] cities =  txtCity.Text.Split(Environment.NewLine);
+
+            foreach (var city in cities)
+            {
+                var t = Task.Run(() => 
+                { 
+                    double temp = wfs.GetTemperature(city);
+                    return (temp, city);
+                });
+
+                t.GetAwaiter().OnCompleted(() =>
+                {// tutaj definiuje kod, który wykona się po zakończeniu zadania t
+                    Application.Current.Dispatcher.Invoke(() =>
+                    {
+                        tbTemperature.Text += $"Temperature in {city} is currently :  {t.Result.temp} °C\n";
+                    });
+                });
+            }
         }
     }
 }
