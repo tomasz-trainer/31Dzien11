@@ -16,7 +16,10 @@
             <Setter Property="Margin" Value="6"></Setter>
             <Setter Property="Padding" Value="5"></Setter>
         </Style>
-        
+
+
+    
+
     </Window.Resources>
 
     <DockPanel>
@@ -43,7 +46,7 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                <Button Style="{StaticResource MyButtonStyle}" Content="Podaj temperature"></Button>
+                <Button x:Name="btnGetTemperature" Style="{StaticResource MyButtonStyle}" Content="Podaj temperature" Click="btnGetTemperature_Click"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>

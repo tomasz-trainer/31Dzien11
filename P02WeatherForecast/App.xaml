@@ -15,5 +15,18 @@
             <Setter Property="Padding" Value="5"></Setter>
         </Style>
 
+        <Style x:Key="BlueColor" TargetType="Control">
+            <Setter Property="Background" Value="{StaticResource MyFavoriteColor}"></Setter>
+            <Setter Property="Foreground" Value="DarkGreen"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Margin" Value="6"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+
+        <Style x:Key="BlueButton" TargetType="Button" BasedOn="{StaticResource BlueColor}">
+            <Setter Property="Foreground" Value="{StaticResource MyFavoriteColor}"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+        </Style>
+
     </Application.Resources>
 </Application>

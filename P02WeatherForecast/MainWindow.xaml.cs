@@ -20,5 +20,10 @@ namespace P02WeatherForecast
         {
             InitializeComponent();
         }
+
+        private void btnGetTemperature_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
