@@ -46,15 +46,22 @@
             </Grid.RowDefinitions>
 
             <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
-                <Button x:Name="btnGetTemperature" Style="{StaticResource MyButtonStyle}" Content="Podaj temperature" Click="btnGetTemperature_Click"></Button>
-                <Button Content="Podaj temperature"></Button>
+                <Button x:Name="btnGetTemperature" Style="{StaticResource MyButtonStyle}" Content="Podaj temperature (Metoda synchroniczna)" Click="btnGetTemperature_Click"></Button>
+                <Button x:Name="btnGetTemperatureAsync1" Content="Podaj temperature (Metoda asynchroniczna 1)" Click="btnGetTemperatureAsync1_Click"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
                 <Button Content="Podaj temperature"></Button>
             </StackPanel>
+
+            <TextBox AcceptsReturn="True" x:Name="txtCity" Grid.Row="1"></TextBox>
+
+            <TextBlock x:Name="tbTemperature" Grid.Column="1"></TextBlock>
+
+            <ListView x:Name="lvLogger" Grid.Column="1" Grid.Row="1"></ListView>
             
+            <!-- komenatarz -->
         </Grid>
     </DockPanel>
     

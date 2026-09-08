@@ -25,6 +25,8 @@ namespace P02WeatherForecast.Services
 
         private double transformujTemperature(string jednostka, double temp)
         {
+            //  Thread.Sleep(1000); // symulacja opóźnienia 1 sekundy
+
             if (jednostka == "C")
                 return temp;
             else if (jednostka == "F")
