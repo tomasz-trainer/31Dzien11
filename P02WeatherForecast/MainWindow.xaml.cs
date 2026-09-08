@@ -161,5 +161,53 @@ namespace P02WeatherForecast
                 });
             }
         }
+
+        // scenariusz 5: podobny do nr 1 ale dodany progress bar 
+        private async void btnGetTemperatureAsync5_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService wfs = new WeatherForecastService();
+            string[] cities = { "Warsaw", "London", "New York", "Tokyo", "Sydney" };
+
+            pbProgressbar.Maximum = cities.Length;
+            pbProgressbar.Value = 0;
+
+            foreach (var city in cities)
+            {
+                lvLogger.Items.Add($"Currently processing: {city}");
+                await Task.Run(() =>
+                {
+                    double temp = wfs.GetTemperature(city);
+                    
+                    return temp;
+                });
+                pbProgressbar.Value += 1;
+
+                tbTemperature.Text += $"Temperature in {city} is currently :  {wfs.GetTemperature(city)} °C\n";
+            }
+        }
+
+        private async void btnGetTemperatureAsync6_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+            WeatherForecastService wfs = new WeatherForecastService();
+            string[] cities = { "Warsaw", "London", "New York", "Tokyo", "Sydney" };
+
+
+            pbProgressbar.Maximum = cities.Length;
+            pbProgressbar.Value = 0;
+
+            foreach (var city in cities)
+            {
+                lvLogger.Items.Add("Currently processing: " + city);
+                double temp = await wfs.GetTemperatureAsync(city);
+                pbProgressbar.Value += 1;
+                tbTemperature.Text += $"Temperature in {city} is currently :  {temp} °C\n";
+            }
+
+
+        }
     }
 }

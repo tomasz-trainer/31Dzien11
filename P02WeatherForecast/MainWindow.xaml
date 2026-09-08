@@ -51,9 +51,11 @@
                 <Button x:Name="btnGetTemperatureAsync2" Content="Podaj temperature (Metoda asynchroniczna 2)" Click="btnGetTemperatureAsync2_Click"></Button>
                 <Button x:Name="btnGetTemperatureAsync3" Content="Podaj temperature (Metoda asynchroniczna 3)" Click="btnGetTemperatureAsync3_Click"></Button>
                 <Button x:Name="btnGetTemperatureAsync4" Content="Podaj temperature (Metoda asynchroniczna 4)" Click="btnGetTemperatureAsync4_Click"></Button>
+                <Button x:Name="btnGetTemperatureAsync5" Content="Podaj temperature (Metoda asynchroniczna 5)" Click="btnGetTemperatureAsync5_Click"></Button>
+                <Button x:Name="btnGetTemperatureAsync6" Content="Podaj temperature (Metoda asynchroniczna 6)" Click="btnGetTemperatureAsync6_Click"></Button>
 
-                <Button Content="Podaj temperature"></Button>
-                <Button Content="Podaj temperature"></Button>
+
+                <ProgressBar x:Name="pbProgressbar" Height="20" ></ProgressBar>
             </StackPanel>
 
             <TextBox AcceptsReturn="True" x:Name="txtCity" Grid.Row="1"></TextBox>
