@@ -10,9 +10,9 @@
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="150">
             <Label Content="City"></Label>
-            <TextBlock x:Name="txtCity"></TextBlock>
+            <TextBox x:Name="txtCity"></TextBox>
             <Button x:Name="btnSearch" Content="Search" Click="btnSearch_Click"></Button>
-            <ListBox x:Name="lbData"></ListBox>
+            <ListBox x:Name="lbData" DisplayMemberPath="FullName" SelectionChanged="lbData_SelectionChanged"></ListBox>
         </StackPanel>
 
         <StackPanel>
