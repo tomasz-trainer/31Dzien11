@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="P01Pogoda/P01Pogoda.csproj" />
+  <Project Path="P01Pogoda_top_level/P01Pogoda_top_level.csproj" />
+  <Project Path="P02WeatherForecast/P02WeatherForecast.csproj" Id="171f29a3-cf68-41e6-bd2b-2e6cba1d3df0" />
+</Solution>
