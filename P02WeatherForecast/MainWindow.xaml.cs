@@ -94,7 +94,7 @@ namespace P02WeatherForecast
             };
         }
 
-        // scenariusz 2: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
+        // scenariusz 3: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
         // dodatkowo : w tasku zwracany kilka wartości (temp, city) w postaci krotki (tuple)
         private async void btnGetTemperatureAsync3_Click(object sender, RoutedEventArgs e)
         {
@@ -124,7 +124,7 @@ namespace P02WeatherForecast
             await Task.WhenAll(tasks);
             lvLogger.Items.Add($"Finished processng all cities");
 
-            foreach (Task<(int Temperature, string City)> task in tasks)
+            foreach (Task<(double Temperature, string City)> task in tasks)
             {
                 double temp = task.Result.Temperature;
                 string city = task.Result.City;
