@@ -7,6 +7,18 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="900">
 
+    <Window.Resources>
+
+        <Style x:Key="MyButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="LightGreen"></Setter>
+            <Setter Property="Foreground" Value="DarkGreen"></Setter>
+            <Setter Property="FontSize" Value="18"></Setter>
+            <Setter Property="Margin" Value="6"></Setter>
+            <Setter Property="Padding" Value="5"></Setter>
+        </Style>
+        
+    </Window.Resources>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File">
@@ -20,6 +32,27 @@
             </MenuItem>
         </Menu>
         <Image DockPanel.Dock="Left" Width="100" Source="/Images/Logo.png" ></Image>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="380"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="0">
+                <Button Style="{StaticResource MyButtonStyle}" Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+                <Button Content="Podaj temperature"></Button>
+            </StackPanel>
+            
+        </Grid>
     </DockPanel>
     
 </Window>
