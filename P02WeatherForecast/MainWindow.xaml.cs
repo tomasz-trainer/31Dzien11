@@ -81,7 +81,7 @@ namespace P02WeatherForecast
                 });
                 tasks.Add(t);
 
-                tbTemperature.Text += $"Temperature in {city}: {t} °C\n";
+               
             }
 
 
