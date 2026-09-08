@@ -6,7 +6,7 @@
         {
 
             OpenMeteoService oms = new OpenMeteoService();
-            await  oms.GetLocationsAsync("warsz");
+            var cities =  await  oms.GetLocationsAsync("warsz");
         }
     }
 }

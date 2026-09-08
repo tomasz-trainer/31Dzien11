@@ -32,7 +32,7 @@ public class GeocodingResponse
         public double Longitude { get; set; }
 
         [JsonProperty("elevation")]
-        public int Elevation { get; set; }
+        public double Elevation { get; set; }
 
         [JsonProperty("feature_code")]
         public string FeatureCode { get; set; }
@@ -84,7 +84,9 @@ public class GeocodingResponse
                var response = await client.GetAsync(url);
                string json = await response.Content.ReadAsStringAsync();
 
-                throw new NotImplementedException();
+               var result = JsonConvert.DeserializeObject<GeocodingResponse>(json);
+
+               return result?.Results?.ToArray() ?? Array.Empty<City>();
             }
 
         }
