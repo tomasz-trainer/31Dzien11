@@ -1,0 +1,50 @@
+https://github.com/tomasz-trainer/30Dzien1  
+
+https://github.com/tomasz-trainer/31Dzien11
+
+
+1-10 -> .NET framework (windows) | vs studio 2026
+11-20 -> .Net core (multiplatform) windows,linux, mac os, sys. mobline
+                                               (MAUI: android, ios, tinzen..)
+          | pełna dowolność -> (budowanie przez cli) visual studio code  
+system operacyjny 
+środowiska programistyczne 
+
+console 
+desktop -> windows forms (net framework) 
+           WPF, XAML (core)   
+
+
+Zapoznanie sie z kontenerami w aplikacji WPF
+
+ - Grid - widok siatki 
+ - StackPanel - ulozenie elementow obok siebie
+ - DockPanel - przypinanie elementow magnesem 
+
+
+
+
+Aplikacja WPF, która ma za zadanie : 
+ 
+1) wczytać miasto dla jakiego pobierzemy pogodę 
+2) sprawdzić pogodę dla tego miasta 
+
+
+komunikacja klienta z api open-meteo 
+
+Juto:
+
+    WPF -> dodanie architektury MVVM (Model-View-ViewModel) do aplikacji, aby oddzielić logikę biznesową od interfejsu użytkownika.
+
+
+
+
+
+
+
+
+
+ 
+
+
+ 
