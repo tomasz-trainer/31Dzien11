@@ -19,7 +19,7 @@
                 <MenuItem Header="Paste"></MenuItem>
             </MenuItem>
         </Menu>
-        <Image DockPanel.Dock="Left" Width="100" Source="" ></Image>
+        <Image DockPanel.Dock="Left" Width="100" Source="/Images/Logo.png" ></Image>
     </DockPanel>
     
 </Window>
