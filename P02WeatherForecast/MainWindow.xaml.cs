@@ -57,5 +57,43 @@ namespace P02WeatherForecast
                 tbTemperature.Text += $"Temperature in {city}: {t} °C\n";
             }
         }
+
+        // scenariusz 1: wywołanie metody asynchronicznej w pętli foreach: czekamy az wszystkie zadania się wykonają i dopiero wtedy wyświetlamy wyniki
+        private async void btnGetTemperatureAsync2_Click(object sender, RoutedEventArgs e)
+        {
+            tbTemperature.Text = string.Empty;
+            lvLogger.Items.Clear();
+
+            WeatherForecastService wfs = new WeatherForecastService();
+            string[] cities = { "Warsaw", "London", "New York", "Tokyo", "Sydney" };
+            //string[] cities =  txtCity.Text.Split(Environment.NewLine);
+            
+            List<Task<double>> tasks = new List<Task<double>>();
+            foreach (string city in cities)
+            {
+             
+
+                var t = Task.Run<double>(() => // to co jest w ciele metody GetTemperature() jest wykonywane w osobnym wątku
+                {
+
+                    double temp = wfs.GetTemperature(city);
+                    return temp;
+                });
+                tasks.Add(t);
+
+                tbTemperature.Text += $"Temperature in {city}: {t} °C\n";
+            }
+
+
+            lvLogger.Items.Add($"Started processng all cities");
+            await Task.WhenAll(tasks);
+            lvLogger.Items.Add($"Finished processng all cities");
+
+            foreach (var task in tasks)
+            {
+                double temp = task.Result;
+                tbTemperature.Text += $"Temperature: {temp} °C\n";
+            };
+        }
     }
 }
