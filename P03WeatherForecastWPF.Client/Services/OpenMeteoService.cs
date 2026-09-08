@@ -1,10 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
-using System.Collections.Generic;
-using System.Net.Http;
+using P03WeatherForecastWPF.Client;
 using P03WeatherForecastWPF.Client.Models;
+using System;
+using System.Collections.Generic;
+using System.Collections.Generic;
+using System.IO;
+using System.Net.Http;
+using System.Text;
 
 namespace P04WeatherForecastConsole.Client
 {
@@ -15,9 +18,23 @@ namespace P04WeatherForecastConsole.Client
         private const string geocoding_base_url = "https://geocoding-api.open-meteo.com/v1/search";
         private const string forecast_base_url = "https://api.open-meteo.com/v1/forecast";
 
+        private string language;
+
+        public OpenMeteoService()
+        {
+            var builder = new ConfigurationBuilder()
+                .AddUserSecrets<App>()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
+
+
+            var configuration = builder.Build();
+            language = configuration["Language"] ?? "en";
+        }
+
         public async Task<City[]> GetLocationsAsync(string locationName)
         {
-            string url = $"{geocoding_base_url}?name={locationName}&count=10&language=pl&format=json";
+            string url = $"{geocoding_base_url}?name={locationName}&count=10&language={language}&format=json";
 
             using (HttpClient client = new HttpClient()) 
             {
