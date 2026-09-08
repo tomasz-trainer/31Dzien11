@@ -8,7 +8,7 @@ namespace P04WeatherForecastConsole.Client
 {
  
 
-public class GeocodingResponse
+    public class GeocodingResponse
     {
         [JsonProperty("results")]
         public List<City> Results { get; set; }
@@ -71,9 +71,71 @@ public class GeocodingResponse
         public string Admin3 { get; set; }
     }
 
+
+    public class OpenMeteoForecastResponse
+    {
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
+
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+
+        [JsonProperty("generationtime_ms")]
+        public double GenerationtimeMs { get; set; }
+
+        [JsonProperty("utc_offset_seconds")]
+        public int UtcOffsetSeconds { get; set; }
+
+        [JsonProperty("timezone")]
+        public string Timezone { get; set; }
+
+        [JsonProperty("timezone_abbreviation")]
+        public string TimezoneAbbreviation { get; set; }
+
+        [JsonProperty("elevation")]
+        public double Elevation { get; set; }
+
+        [JsonProperty("current_units")]
+        public CurrentUnits CurrentUnits { get; set; }
+
+        [JsonProperty("current")]
+        public Current Current { get; set; }
+    }
+
+    public class CurrentUnits
+    {
+        [JsonProperty("time")]
+        public string Time { get; set; }
+
+        [JsonProperty("interval")]
+        public string Interval { get; set; }
+
+        [JsonProperty("temperature_2m")]
+        public string Temperature2m { get; set; }
+    }
+
+    public class Current
+    {
+        [JsonProperty("time")]
+        public string Time { get; set; }
+
+        [JsonProperty("interval")]
+        public int Interval { get; set; }
+
+        [JsonProperty("temperature_2m")]
+        public double Temperature2m { get; set; }
+    }
+
+    internal class Weather
+    {
+        public string Time { get; set; }
+        public double Temperature2m { get; set; }
+    }
+
     internal class OpenMeteoService
     {
         private const string geocoding_base_url = "https://geocoding-api.open-meteo.com/v1/search";
+        private const string forecast_base_url = "https://api.open-meteo.com/v1/forecast";
 
         public async Task<City[]> GetLocationsAsync(string locationName)
         {
@@ -90,5 +152,31 @@ public class GeocodingResponse
             }
 
         }
+
+        public async Task<Weather> GetCurrentConditionsAsync(double latitude, double longitude)
+        {
+            string lat = latitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+             string lon = longitude.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
+            string url = $"{forecast_base_url}?latitude={lat}&longitude={lon}&current=temperature_2m";
+
+
+            using (HttpClient client = new HttpClient())
+            {
+                var response = await client.GetAsync(url);
+                var json = await response.Content.ReadAsStringAsync();
+
+                var result = JsonConvert.DeserializeObject<OpenMeteoForecastResponse>(json);
+            
+                return new Weather
+                {
+                    Time = result?.Current?.Time,
+                    Temperature2m = result?.Current?.Temperature2m ?? 0
+                };
+
+            }
+     
+        }
+
     }
 }
