@@ -2,4 +2,6 @@
   <Project Path="P01Pogoda/P01Pogoda.csproj" />
   <Project Path="P01Pogoda_top_level/P01Pogoda_top_level.csproj" />
   <Project Path="P02WeatherForecast/P02WeatherForecast.csproj" Id="171f29a3-cf68-41e6-bd2b-2e6cba1d3df0" />
+  <Project Path="P03WeatherForecastWPF.Client/P03WeatherForecastWPF.Client.csproj" Id="e304e03f-ccbd-489d-afb0-5e9133f8948c" />
+  <Project Path="P04WeatherForecastConsole.Client/P04WeatherForecastConsole.Client.csproj" Id="e0ccd91c-9c5d-455d-a6bf-ccc04fbbf499" />
 </Solution>
